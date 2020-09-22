@@ -1,17 +1,15 @@
-  <ion-item *ngIf="!isScanning">
-    <ion-label>Valor</ion-label>
-    <ion-select placeholder="Select One" (ionChange)="changeValue($event)">
-      <ion-select-option value="0001010">0001010</ion-select-option>
-      <ion-select-option value="3034032">3034032</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ngx-qrcode *ngIf="!isScanning"
-    class="aclass"
-    [elementType]="elementType" 
-    [value]="value"
-    cssClass="aclass"
-    errorCorrectionLevel="L">
-  </ngx-qrcode>
-  <ion-button *ngIf="!isScanning" expand="block" (click)="activeQrScanner()">Scan QR code</ion-button>
-  <ion-button *ngIf="isScanning" expand="block" (click)="stop()">Terminar</ion-button>
+<ion-header>
+  <ion-toolbar>
+      <ion-title>
+          Ionic QR Scanner
+      </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+      <ion-button (click)="startScanning()" expand="full">qrscanner</ion-button>
+      <p *ngIf="qrText">QR Scan text: {{ qrText }}</p>
+  </div>
+</ion-content>
 
