@@ -23,6 +23,10 @@ export class HomePage {
       this.scanSub.unsubscribe();
     });
   }
+  
+  changeValue(ev) {
+    this.value = ev.detail.value;
+  }
 
   startScanning() {
     // Optionally request the permission early
