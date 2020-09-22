@@ -10,7 +10,10 @@ import { AlertController, Platform } from '@ionic/angular';
 export class HomePage {
   scanSub: any;
   qrText: string;
-
+  title = 'app';
+  elementType = 'url';
+  value = 'Techiediaries';
+  isScanning = false;
   constructor(
     public platform: Platform,
     private qrScanner: QRScanner
