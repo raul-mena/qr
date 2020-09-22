@@ -1,20 +1,17 @@
-<div style="text-align:center">
-  <h1>
-    @techiediaries/ngx-qrcode demo 
-  </h1>
-</div>
-<ion-item>
-  <ion-label>Valor</ion-label>
-  <ion-select placeholder="Select One" (ionChange)="changeValue($event)">
-    <ion-select-option value="0001010">0001010</ion-select-option>
-    <ion-select-option value="3034032">3034032</ion-select-option>
-  </ion-select>
-</ion-item>
-<ngx-qrcode 
-  class="aclass"
-  [elementType]="elementType" 
-  [value]="value"
-  cssClass="aclass"
-  errorCorrectionLevel="L">
-</ngx-qrcode>
-<ion-button expand="block" (click)="activeQrScanner()">Scan QR code</ion-button>
+  <ion-item *ngIf="!isScanning">
+    <ion-label>Valor</ion-label>
+    <ion-select placeholder="Select One" (ionChange)="changeValue($event)">
+      <ion-select-option value="0001010">0001010</ion-select-option>
+      <ion-select-option value="3034032">3034032</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ngx-qrcode *ngIf="!isScanning"
+    class="aclass"
+    [elementType]="elementType" 
+    [value]="value"
+    cssClass="aclass"
+    errorCorrectionLevel="L">
+  </ngx-qrcode>
+  <ion-button *ngIf="!isScanning" expand="block" (click)="activeQrScanner()">Scan QR code</ion-button>
+  <ion-button *ngIf="isScanning" expand="block" (click)="stop()">Terminar</ion-button>
+

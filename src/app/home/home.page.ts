@@ -11,6 +11,7 @@ export class HomePage {
   title = 'app';
   elementType = 'url';
   value = 'Techiediaries';
+  isScanning = false;
   constructor(
     private qrScanner: QRScanner,
     private alertCtrl: AlertController
@@ -25,14 +26,17 @@ export class HomePage {
     this.qrScanner.prepare()
     .then((status: QRScannerStatus) => {
       if (status.authorized) {
+        this.isScanning = true;
         // camera permission was granted
         // start scanning
-        let scanSub = this.qrScanner.scan().subscribe((text: string) => {
+        this.qrScanner.scan().subscribe((text: string) => {
           console.log('Scanned something', text);
-          this.qrScanner.hide(); // hide camera preview
-          scanSub.unsubscribe(); // stop scanning
           this.presentAlert(text);
+          setTimeout(() => {
+            this.stop(); // hide camera preview
+          }, 100);
         });
+        this.qrScanner.show();
       } else if (status.denied) {
         this.presentAlert('camera permission was permanently denied');
         // camera permission was permanently denied
@@ -44,6 +48,12 @@ export class HomePage {
       }
     })
     .catch((e: any) => console.log('Error is', e));
+  }
+
+  stop(){
+    this.qrScanner.hide(); // hide camera preview
+    this.qrScanner.destroy(); // hide camera preview
+    this.isScanning = false;
   }
 
   async presentAlert(msg) {
