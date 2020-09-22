@@ -24,6 +24,7 @@
     </ngx-qrcode>
       <ion-button (click)="startScanning()" expand="full">qrscanner</ion-button>
       <p *ngIf="qrText">QR Scan text: {{ qrText }}</p>
+      <ion-button  *ngIf="qrText" expand="full" (click)="openLink()">Abrir link</ion-button>
   </div>
 </ion-content>
 

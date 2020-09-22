@@ -6,7 +6,8 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
-import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
+import { QRScanner } from '@ionic-native/qr-scanner/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
   ],
   declarations: [HomePage],
   providers: [
-    QRScanner
+    QRScanner,
+    InAppBrowser
   ]
 })
 export class HomePageModule {}

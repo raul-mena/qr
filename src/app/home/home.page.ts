@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 import { AlertController, Platform } from '@ionic/angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,7 @@ export class HomePage {
   isScanning = false;
   constructor(
     public platform: Platform,
+    private iap: InAppBrowser,
     private qrScanner: QRScanner
   ) {
     this.platform.backButton.subscribeWithPriority(0, () => {
@@ -23,9 +25,13 @@ export class HomePage {
       this.scanSub.unsubscribe();
     });
   }
-  
+
   changeValue(ev) {
     this.value = ev.detail.value;
+  }
+
+  openLink(){
+    this.iap.create(this.qrText,"_blank");
   }
 
   startScanning() {
